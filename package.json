@@ -1,0 +1,12 @@
+{
+    "name": "cis-3238.contextual.hints",
+    "title": "CIS-3238: Contextual Hints",
+    "description": "This is a group project for Temple University CIS 3238, Fall 2015. The goal of this project is to give the user the ability to get contextual help with CSS (and HTML, if there's time) via a hotkey. We promise we thought this up before finding out about Quck Docs!",
+    "homepage": "https://github.com/EJSG/CIS-3238.Contextual.Hints",
+    "version": "0.0.1",
+    "author": "Ezra Sowden-Guzman <ezra.guzman@temple.edu> and Rachel Tritsch <rachel.tritsch@temple.edu>",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.24.0"
+    }
+}
