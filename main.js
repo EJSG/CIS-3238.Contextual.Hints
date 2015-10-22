@@ -11,7 +11,7 @@ define(function (require, exports, module) {
 
     // Function to run when the menu item is clicked
     function handleHelloWorld() {
-        window.alert("HAHAHA THIS PROJECT IS EMPTY LOL JOKES ON YOU");
+        window.alert("blablabla");
     }
 
 
