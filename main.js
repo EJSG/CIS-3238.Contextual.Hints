@@ -5,6 +5,6 @@
 define(function (require, exports, module) {
     "use strict";
 
-    var test = require("js/addUIElement.js");
+    var test = require("src/addUIElement");
     
 });
