@@ -27,4 +27,6 @@ define(function (require, exports, module) {
     // We could also add a key binding at the same time:
     //menu.addMenuItem(MY_COMMAND_ID, "Ctrl-Alt-W");
     // (Note: "Ctrl" is automatically mapped to "Cmd" on Mac)
+    
+    ExtensionUtils.loadStyleSheet("styles.css");
 });
