@@ -4,7 +4,9 @@
 /** Simple extension that adds a "File > Hello World" menu item */
 define(function (require, exports, module) {
     "use strict";
-
-    var test = require("src/addUIElement");
+    
+    // Add modules
+    var addUIElement = require("src/addUIElement");
+    
     
 });
