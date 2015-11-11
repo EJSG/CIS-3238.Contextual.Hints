@@ -653,7 +653,7 @@ define(function (require, exports, module) {
                       defaultValue:"luminance",
                       isInherited:false,
                       isAnimatable:false
-                    }
+                    };
     var color = {
                     actualName:"color",
                     definition:"Sets the color of text",
@@ -1446,8 +1446,6 @@ define(function (require, exports, module) {
                     isAnimatable:false
             };
     
-    
-    
     //****************** weird guys here ******************//
     
     var fontFace = {
@@ -1465,6 +1463,7 @@ define(function (require, exports, module) {
                     isAnimatable:
             };
 
+    
     // now, you can do CSSAttributeObjects.push(backgroundColor)
     // push all keyword objects into CSSAttributeObjects array
     
