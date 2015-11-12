@@ -653,12 +653,7 @@ define(function (require, exports, module) {
                       defaultValue:"luminance",
                       isInherited:false,
                       isAnimatable:false
-                    }
-
-    
-    // Please follow the above guidelines when adding definitions--the attribute names and their types 
-    // (i.e. isInherited is boolean, not a string) 
-    
+                    };
     var color = {
                     actualName:"color",
                     definition:"Sets the color of text",
@@ -928,6 +923,13 @@ define(function (require, exports, module) {
     var borderTopLeftRadius = {
                     actualName:"border-top-left-radius",
                     definition:"Defines the shape of the border of the top-left corner",
+                    defaultValue:"0",
+                    isInherited:false,
+                    isAnimatable:true
+            };
+    var borderTopRightRadius = {
+                    actualName:"border-top-right-radius",
+                    definition:"Defines the shape of the border of the top-right corner",
                     defaultValue:"0",
                     isInherited:false,
                     isAnimatable:true
@@ -1444,8 +1446,6 @@ define(function (require, exports, module) {
                     isAnimatable:false
             };
     
-    
-    
     //****************** weird guys here ******************//
     
     var fontFace = {
@@ -1463,6 +1463,9 @@ define(function (require, exports, module) {
                     isAnimatable:
             };
 
+    
+    // now, you can do CSSAttributeObjects.push(backgroundColor)
+    // push all keyword objects into CSSAttributeObjects array
     
     CSSAttributeObjects.push( 
         fontKerning,
@@ -1559,14 +1562,124 @@ define(function (require, exports, module) {
         objectFit,
         objectPosition,
         mask,
-        maskType
+        maskType,
+        color,
+         opacity,
+         background,
+         backgroundAttachment,
+         backgroundBlendMode,
+         backgroundColor,
+         backgroundImage,
+         backgroundPosition,
+         backgroundRepeat,
+         backgroundClip,
+         backgroundOrigin,
+         backgroundSize,
+         border,
+         borderBottom,
+         borderBottomColor,
+         borderBottomLeftRadius,
+         borderBottomRightRadius,
+         borderBottomStyle,
+         borderBottomWidth,
+         borderColor,
+         borderImage,
+         borderImageOutset,
+         borderImageRepeat,
+         borderImageSlice,
+         borderImageSource,
+         borderImageWidth,
+         borderLeft,
+         borderLeftColor,
+         borderLeftStyle,
+         borderLeftWidth,
+         borderRadius,
+         borderRight,
+         borderRightColor,
+         borderRightStyle,
+         borderRightWidth,
+         borderStyle,
+         borderTop,
+         borderTopColor,
+         borderTopLeftRadius,
+         borderTopRightRadius,
+         borderTopStyle,
+         borderTopWidth,
+         borderWidth,
+         boxDecorationBreak,
+         boxShadow,
+         bottom,
+         clear,
+         clip,
+         display,
+         float,
+         height,
+         left,
+         margin,
+         marginBottom,
+         marginLeft,
+         marginTop,
+         maxHeight,
+         maxWidth,
+         minHeight,
+         minWidth,
+         overflow,
+         overflowX,
+         overflowY,
+         padding,
+         paddingBottom,
+         paddingLeft,
+         paddingRight,
+         paddingTop,
+         position,
+         right,
+         top,
+         visibility,
+         width,
+         verticalAlign,
+         zIndex,
+         alignContent,
+         alignItems,
+         alignSelf,
+         flex,
+         flexBasis,
+         flexDirection,
+         flexFlow,
+         flexGrow,
+         flexShrink,
+         flexWrap,
+         justifyContent,
+         order,
+         hangingPunctuation,
+         hyphens,
+         letterSpacing,
+         lineBreak,
+         lineHeight,
+         overflowWrap,
+         tabSize,
+         textAlign,
+         textAlignLast,
+         textCombineUpright,
+         textIndent,
+         textJustify,
+         textTransform,
+         whiteSpace,
+         wordBreak,
+         wordSpacing,
+         wordWrap,
+         textDecoration,
+         textDecorationColor,
+         textDecorationLine,
+         textDecorationStyle,
+         textShadow,
+         textUnderlinePosition,
+         fontFace,
+         fontFeatureValues,
+         fontFamily,
+         fontFeatureSettings
         );
-    // now, you can do CSSAttributeObjects.push(backgroundColor)
-    // push all keyword objects into CSSAttributeObjects array
     
-    
-    
-    
+
         
     // The following are all part of the CSS speech module, which is very poorly documented. I'm not gonna include them.
 //        mark = {
