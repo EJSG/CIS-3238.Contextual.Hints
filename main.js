@@ -5,8 +5,11 @@
 define(function (require, exports, module) {
     "use strict";
     
+    function log(s) {
+            console.log("[ContextualHints] "+s);
+    }
+    log("Requiring createPanel.js... ");
+    
     // Add modules
-    var addUIElement = require("src/addUIElement");
-    
-    
+    var addUIElement = require("src/createPanel");
 });

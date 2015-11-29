@@ -19,4 +19,8 @@ define(function (require, exports, module) {
     var cssDefinitions = require("cssDefinitions");
     // After importing, you can now access the definitions list by: cssDefinitions.CSSAttributeObjects
     
+    var panelManager = require("createPanel");
+    
+   
+    
 });
