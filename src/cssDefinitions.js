@@ -22,8 +22,6 @@ define(function (require, exports, module) {
     //                          isAnimatable:true
     //                       };
     
-    var CSSAttributeObjects = {};
-    
     var fontKerning = {
                       actualName:"font-kerning", 
                       definition:"The font-kerning CSS property controls the usage of the kerning information; that is, it controls how letters are spaced.",
@@ -476,14 +474,10 @@ define(function (require, exports, module) {
                       actualName:"outline", 
                       definition:"The CSS outline property is a shorthand property for setting one or more of the individual outline properties outline-style, outline-width and outline-color in a single declaration. ",
                       defaultValue:"",
-<<<<<<< HEAD
                       isInherited: false,
-                      isAnimatable: false
-=======
-                      isInherited:,
-                      isAnimatable:,
+                      isAnimatable: false,
                       usageExample:":link:hover { outline: 1px solid #000; }"
->>>>>>> refs/remotes/origin/master
+
                     },
         outlineColor = {
                       actualName:"outline-color", 
@@ -491,7 +485,7 @@ define(function (require, exports, module) {
                       defaultValue:"invert, for browsers supporting it, currentColor for the other",
                       isInherited:false,
                       isAnimatable:true,
-                      usageExample:".example {  /* first need to set "outline" */  outline: 2px solid;  /* make the outline blue */  outline-color: #0000FF; }"
+                      usageExample:".example {  /* first need to set \"outline\" */  outline: 2px solid;  /* make the outline blue */  outline-color: #0000FF; }"
                     },
         outlineOffset = {
                       actualName:"outline-offset", 
@@ -1652,29 +1646,23 @@ define(function (require, exports, module) {
                     actualName:"@font-face",
                     definition:"A rule that allows websites to download and use fonts other than the 'web-safe' fonts",
                     defaultValue:"",
-<<<<<<< HEAD
                     isInherited: true,
-                    isAnimatable: false
-=======
-                    isInherited:,
-                    isAnimatable:,
+                    isAnimatable: false,
                     usageExample:"@font-face { font-family: \"Bitstream Vera Serif Bold\"; src: url(\"https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf\"); }"
->>>>>>> refs/remotes/origin/master
+
             };
     var fontFeatureValues = {
                     actualName:"@font-feature-values",
                     definition:"Allows authors to use a common name in font-variant-alternate for feature activated differently in OpenType",
                     defaultValue:"",
-<<<<<<< HEAD
                     isInherited: false,
-                    isAnimatable: false
-=======
-                    isInherited:,
-                    isAnimatable:,
+                    isAnimatable: false,
                     usageExample:"@font-feature-values Font One { /* How to activate nice-style in Font One */ @styleset { nice-style: 12;   } }"
->>>>>>> refs/remotes/origin/master
+
             };
 
+    
+    var CSSAttributeObjects = [];
     
     // now, you can do CSSAttributeObjects.push(backgroundColor)
     // push all keyword objects into CSSAttributeObjects array
@@ -1815,7 +1803,6 @@ define(function (require, exports, module) {
          boxShadow,
          bottom,
          clear,
-         clip,
          display,
          float,
          height,
@@ -1884,133 +1871,4 @@ define(function (require, exports, module) {
          fontFeatureSettings
         );
     
-
-        
-    // The following are all part of the CSS speech module, which is very poorly documented. I'm not gonna include them.
-//        mark = {
-//                      actualName:"mark", 
-//                      definition:"The 'mark' property is a shorthand for setting 'mark-before' and 'mark-after'",
-//                      defaultValue:"none",
-//                      isInherited:false,
-//                      isAnimatable:false
-//                    },
-//        markAfter = {
-//                      actualName:"mark-after", 
-//                      definition:"The mark properties allow named markers to be attached to the audio stream. ",
-//                      defaultValue:"none",
-//                      isInherited:false,
-//                      isAnimatable:false
-//                    },
-//        markBefore = {
-//                      actualName:"mark-before", 
-//                      definition:"The mark properties allow named markers to be attached to the audio stream. ",
-//                      defaultValue:"",
-//                      isInherited:false,
-//                      isAnimatable:false
-//                    },
-//        phonemes = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        rest = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        restAfter = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        restBefore = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voiceBalance = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voiceDuration = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voicePitch = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voicePitchRange = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voiceRate = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voiceStress = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        voiceVolume = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        marqueeDirection = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        marqueePlayCount = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        marqueeSpeed = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    },
-//        marqueeStyle = {
-//                      actualName:"", 
-//                      definition:"",
-//                      defaultValue:"",
-//                      isInherited:,
-//                      isAnimatable:
-//                    };
 });
