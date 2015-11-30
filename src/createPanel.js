@@ -1,28 +1,138 @@
-// This module is activated by hotkey or context menu. It creates, styles, and populates 
 define(function (require, exports, module) {
-    "use strict";
+    var CommandManager      = brackets.getModule("command/CommandManager"),
+        Menus               = brackets.getModule("command/Menus"),
+        PanelManager        = brackets.getModule("view/PanelManager"),
+        ExtensionUtils      = brackets.getModule("utils/ExtensionUtils"),        
+        AppInit             = brackets.getModule("utils/AppInit"),
+        KeyBindingManager   = brackets.getModule("command/KeyBindingManager"),
+        Editor              = brackets.getModule('editor/Editor').Editor,
+        EditorManager       = brackets.getModule('editor/EditorManager');
+
+    var panelHtml  = require("text!./html/bottom-panel.html");
+    //var cssDefinitions = require("src/cssDefinitions");
     
-    // This file contains:
-    //      1. List (array, actually) of all CSS3 keywords
-    //      2. definitions of those keywords
-    //      3. usage examples
-    //      4. any other info for CSS keyword that we come up with
+    var CONTEXTUAL_HINTS_EXECUTE = "contextualHints.execute";
+    var panel;
+    var CSSAttributeObjects = [];
+    var selectedText = "";
+    var selectedAttribute;
+    function log(s) {
+            console.log("[ContextualHints] "+s);
+    }
     
-    // create array of objects, where each object is one of the CSS3 keywords.
-    // object should follow CSS JaveScript syntax (you can find them all on w3schools.com),
-    // such as: background-color ---> backgroundColor
+    log("Entered createPanel.js");
     
-    // e.g. create objects for keywords:
+    AppInit.appReady(function () {
+        
+        log("Creating panel");
+        ExtensionUtils.loadStyleSheet(module, "./css/styles.less");
+        CommandManager.register("Show Contextual Hint", CONTEXTUAL_HINTS_EXECUTE, handlePanel);
+
+        var menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU);
+        menu.addMenuDivider();
+        menu.addMenuItem(CONTEXTUAL_HINTS_EXECUTE);
+
+        panel = PanelManager.createBottomPanel(CONTEXTUAL_HINTS_EXECUTE, $(panelHtml),200);
+        
+        KeyBindingManager.addBinding(CONTEXTUAL_HINTS_EXECUTE, "alt-shift-h");
+//        Resizer.removeSizable(panel);
+        
+        $("#close-button").click(
+            function() {
+                CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(false);
+                panel.hide();
+            }
+        )
+        
+        setupCSSObjectArray();
+    });
+
+
+
+    function handlePanel() {
+        selectedAttribute = null;
+        selectedText = getSelection();
+        
+        if(selectedText == "") {
+            
+            handleError("Please select a CSS rule");
+            
+        } else if(!selectionIsValid(selectedText)) {
+            
+            handleError("Selection is not a valid CSS3 rule");
+            
+        } else {
+            
+            if(panel.isVisible()) {
+            CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(false);
+            panel.hide();
+            
+            } else {
+                CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(true);
+                populatePanel(selectedAttribute);
+                panel.show();
+
+            }
+        }
+    }
     
-    // var backgroundColor = {
-    //                          actualName:"background-color", 
-    //                          definition:"The background-color property sets the background color of an element",
-    //                          defaultValue:"transparent",
-    //                          isInherited:false,
-    //                          isAnimatable:true
+    function getSelection() {
+
+        var editor = EditorManager.getCurrentFullEditor();
+//        var cursorPos = editor.getCursorPos();
+        var selectedText = "";
+        if (editor.hasSelection()) {
+            selectedText = editor.getSelectedText();
+        }
+        
+        return selectedText;
+    }
+    
+    function selectionIsValid(selectedText) {
+        
+        var i = 0;
+        var isValid = false;
+        
+        for(i; i < CSSAttributeObjects.length; i++) {
+            
+            if( CSSAttributeObjects[i].actualName == selectedText ) {
+                isValid = true;
+                selectedAttribute = CSSAttributeObjects[i];
+            }
+        }
+        
+        return isValid;
+    }
+    
+    function handleError(errorType) {
+        
+        alert("Error: " + errorType);
+    }
+
+    function populatePanel(CSSObject) {
+        
+        $("#rule-name").html(CSSObject.actualName);
+        $("#rule-definition").html(CSSObject.definition);
+        $("#default-value").html(CSSObject.defaultValue);
+        $("#usage-example").html(CSSObject.usageExample);
+        
+        if(CSSObject.isInherited == true) {
+            $("#is-inherited").html("true");
+        } else {
+            $("#is-inherited").html("false");
+        }
+        
+        if(CSSObject.isAnimatable == true) {
+            $("#is-animatable").html("true");
+        } else {
+            $("#is-animatable").html("false");
+        }
+        
+    }
+
     //                       };
-    
-    var fontKerning = {
+    function setupCSSObjectArray() {
+        var fontKerning = {
                       actualName:"font-kerning", 
                       definition:"The font-kerning CSS property controls the usage of the kerning information; that is, it controls how letters are spaced.",
                       defaultValue:"auto",
@@ -1662,7 +1772,7 @@ define(function (require, exports, module) {
             };
 
     
-    var CSSAttributeObjects = [];
+//    var CSSAttributeObjects = [];
     
     // now, you can do CSSAttributeObjects.push(backgroundColor)
     // push all keyword objects into CSSAttributeObjects array
@@ -1868,7 +1978,24 @@ define(function (require, exports, module) {
          fontFace,
          fontFeatureValues,
          fontFamily,
-         fontFeatureSettings
+         fontFeatureSettings,
+        fontWeight
         );
     
+    return CSSAttributeObjects;
+
+    }
+
+
 });
+
+
+
+
+
+
+
+
+
+
+

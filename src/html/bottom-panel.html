@@ -1,3 +1,95 @@
-<div style="background-color:green;">
+<div id="contextualHintPanel" class="contextualHintPanel">
+    
+    <div class="hintContainer">
+        <table class="hintContanerTable">
+            <tr>
+                <td>
+                    <div class="header">
+                        <span class="bold">Name of Rule:</span>&nbsp;&nbsp;&nbsp;<span id="rule-name"></span>
+                    </div>
+                </td>
+                
+                <td class="close-button" id="close-button">
+                    <span>X</span>
+                </td>
+            </tr>
 
+            
+            <tr>
+                <td colspan="2" class="body">
+                    <table class="bodyTable">
+                        
+                        <tr>
+                            <td class="col-left">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            Definition:
+                                        </th>
+                                    
+                                        <td id="rule-definition">
+                                            Definition goes here
+                                        </td>
+                                        
+                                        
+                                        <tr>
+                                            <th>
+                                                Usage Example:
+                                            </th>
+
+                                            <td class="blue" id="usage-example">
+                                                Usage example(s) go here
+                                            </td>
+                                        </tr>
+                                    </tr>
+                                    
+                                </table>
+                            </td>
+
+                            <td class="vertical-separator" rowspan="100">
+                            </td>
+
+                            <td class="col-right">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            Default value:
+                                        </th>
+                                        <td class="blue code" id="default-value">
+                                            100px solid green
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>
+                                            Inherited: 
+                                        </th>
+                                        <td class="blue code" id="is-inherited">
+                                            true
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            Animatable:
+                                        </th>
+                                        <td class="blue code" id="is-animatable">
+                                            false
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="table-spacer"></td>
+                                    </tr>
+                                    
+                                    
+                                </table>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
 </div>
