@@ -200,7 +200,7 @@ define(function (require, exports, module) {
                       isAnimatable:false
                     },
         counterIncrement = {
-                      actualName:"counter-incremen", 
+                      actualName:"counter-increment", 
                       definition:"The counter-increment property increments one or more counter values.",
                       defaultValue:"none",
                       isInherited:false,
@@ -420,8 +420,8 @@ define(function (require, exports, module) {
                       actualName:"outline", 
                       definition:"The CSS outline property is a shorthand property for setting one or more of the individual outline properties outline-style, outline-width and outline-color in a single declaration. ",
                       defaultValue:"",
-                      isInherited:,
-                      isAnimatable:
+                      isInherited: false,
+                      isAnimatable: false
                     },
         outlineColor = {
                       actualName:"outline-color", 
@@ -1452,15 +1452,15 @@ define(function (require, exports, module) {
                     actualName:"@font-face",
                     definition:"A rule that allows websites to download and use fonts other than the 'web-safe' fonts",
                     defaultValue:"",
-                    isInherited:,
-                    isAnimatable:
+                    isInherited: true,
+                    isAnimatable: false
             };
     var fontFeatureValues = {
                     actualName:"@font-feature-values",
                     definition:"Allows authors to use a common name in font-variant-alternate for feature activated differently in OpenType",
                     defaultValue:"",
-                    isInherited:,
-                    isAnimatable:
+                    isInherited: false,
+                    isAnimatable: false
             };
 
     
@@ -1470,7 +1470,7 @@ define(function (require, exports, module) {
     CSSAttributeObjects.push( 
         fontKerning,
         fontLanguageOverride,
-        fontSize 
+        fontSize,
         fontSizeAdjust,
         fontStretch,
         fontStyle,
@@ -1523,11 +1523,6 @@ define(function (require, exports, module) {
         content,
         cursor,
         imeMode,
-        navDown,
-        navIndex,
-        navLeft,
-        navRight,
-        navUp,
         outline,
         outlineColor,
         outlineOffset,
@@ -1561,8 +1556,6 @@ define(function (require, exports, module) {
         imageResolution,
         objectFit,
         objectPosition,
-        mask,
-        maskType,
         color,
          opacity,
          background,

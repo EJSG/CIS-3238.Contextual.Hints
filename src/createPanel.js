@@ -66,11 +66,15 @@ define(function (require, exports, module) {
         PanelManager        = brackets.getModule("view/PanelManager"),
         ExtensionUtils      = brackets.getModule("utils/ExtensionUtils"),        
         AppInit             = brackets.getModule("utils/AppInit"),
-        KeyBindingManager   = brackets.getModule("command/KeyBindingManager");
+        KeyBindingManager   = brackets.getModule("command/KeyBindingManager"),
+        Editor              = brackets.getModule('editor/Editor').Editor,
+        EditorManager       = brackets.getModule('editor/EditorManager');
 
-    var panel;
     var panelHtml  = require("text!./html/bottom-panel.html");
+    var cssDefinitions = require("src/cssDefinitions");
+    
     var CONTEXTUAL_HINTS_EXECUTE = "contextualHints.execute";
+    var panel;
     
     function log(s) {
             console.log("[ContextualHints] "+s);
@@ -78,29 +82,110 @@ define(function (require, exports, module) {
     
     log("Entered createPanel.js");
 
-    function togglePanel() {
-        if(panel.isVisible()) {
+    function handlePanel() {
+        
+        var selectedText = getSelection();
+        
+        if( selectedText.equals("") ) {
+            
+            handleError("selection");
+            
+        } else if(!selectionIsValid(selectedTest)) {
+            
+            handleError("invalid");
+            
+        } else {
+            
+            if(panel.isVisible()) {
             CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(false);
             panel.hide();
             
-        } else {
-            CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(true);
-            panel.show();
-            
+            } else {
+                CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(true);
+                panel.show();
+
+            }
         }
     }
+    
+    function getSelection() {
 
+        var editor = EditorManager.getCurrentFullEditor();
+        var cursorPos = editor.getCursorPos();
+        var selectedText = "";
+        if (editor.hasSelection()) {
+            
+            selectedText = editor.getSelectedText();
+            
+        }
+        
+        return selectedText;
+    }
+    
+    function selectionIsValid(selectedText) {
+        
+        var cssAttributeArray = cssDefinitions.CSSAttributeObjects;
+        
+        for(var i = 0; i < cssAttributeArray.length; i++) {
+            
+            if( cssAttributeArray[i].equals(selectedText) ) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    function handleError(errorType) {
+        
+        alert("Dummy error.");
+    }
+    
     AppInit.appReady(function () {
         
         log("Creating panel");
         ExtensionUtils.loadStyleSheet(module, "./css/styles.less");
-        CommandManager.register("Show Contextual Hint", CONTEXTUAL_HINTS_EXECUTE, togglePanel);
+        CommandManager.register("Show Contextual Hint", CONTEXTUAL_HINTS_EXECUTE, handlePanel);
 
         var menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU);
+        menu.addMenuDivider();
         menu.addMenuItem(CONTEXTUAL_HINTS_EXECUTE);
 
         panel = PanelManager.createBottomPanel(CONTEXTUAL_HINTS_EXECUTE, $(panelHtml),200);
-        KeyBindingManager.addBinding(CONTEXTUAL_HINTS_EXECUTE, "ctrl-shift-p");
+        
+        KeyBindingManager.addBinding(CONTEXTUAL_HINTS_EXECUTE, "alt-shift-h");
+//        Resizer.removeSizable(panel);
+        
+        $("#close-button").click(
+            function() {
+                CommandManager.get(CONTEXTUAL_HINTS_EXECUTE).setChecked(false);
+                panel.hide();
+            }
+        )
+        
+        
     });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
